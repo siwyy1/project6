@@ -1,5 +1,5 @@
 from ingestion.get_data import *
 def test_fetch():
     data = fetch()
-    assert isinstance(data, dict)
+    assert isinstance(data, list)
 
