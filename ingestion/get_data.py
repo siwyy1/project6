@@ -4,7 +4,7 @@ import json
 def fetch():
     url = "https://api.github.com/users/torvalds/repos"
     response = requests.get(url)
-    return response.jsogn()
+    return response.json()
 
 def save_to_file(data):
     with open("data/data.json", "w") as file:

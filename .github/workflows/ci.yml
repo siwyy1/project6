@@ -1,4 +1,4 @@
-name: Python CI
+name: Docker Compose CI
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
 
 jobs:
 
-  test:
+  dockercitest:
 
     runs-on: ubuntu-latest
 
@@ -16,16 +16,8 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Setup Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.12"
+      - name: Build containers
+        run: docker compose build
 
-      - name: Install uv
-        run: pip install uv
-
-      - name: Install dependencies
-        run: uv sync
-
-      - name: Run pytest
-        run: uv run pytest -v
+      - name: Run pytest container
+        run: docker compose up pytest
