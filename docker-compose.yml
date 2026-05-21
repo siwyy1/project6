@@ -1,0 +1,19 @@
+services:
+
+  get_data:  
+    build: .   
+    image: python_custom
+    container_name: get_data
+    volumes:
+    - ./:/app
+    command: > 
+      uv run python ingestion/get_data.py
+
+  pytest:
+    build: .
+    image: python_custom
+    container_name: pytest
+    volumes:
+      - ./:/app
+    command: >
+      uv run pytest
